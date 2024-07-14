@@ -17,6 +17,9 @@ public class PlayerManagement : MonoBehaviour
     public int playerCurrentMP;
 
     private bool isInventoryOpen = false; // 인벤토리 창 상태 추적
+
+    public int viewMode;
+    public GameObject VirtualCamera_3rdPersonFollow;
     
     // Start is called before the first frame update
     void Awake()
@@ -44,6 +47,10 @@ public class PlayerManagement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             ToggleInventory();
+        }
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            SwitchViewMode();
         }
     }
 
@@ -94,6 +101,19 @@ public class PlayerManagement : MonoBehaviour
         if (cinemachineCamera != null)
         {
             cinemachineCamera.gameObject.SetActive(!isInventoryOpen);
+        }
+    }
+
+    private void SwitchViewMode()
+    {
+        viewMode = (viewMode + 1) % 2;
+        if (viewMode == 0)
+        {
+            VirtualCamera_3rdPersonFollow.SetActive(true);
+        }
+        else
+        {
+            VirtualCamera_3rdPersonFollow.SetActive(false);
         }
     }
 }
