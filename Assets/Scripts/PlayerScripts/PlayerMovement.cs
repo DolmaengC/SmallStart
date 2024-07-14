@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed;
+    public float walkingSpeed;
+    public float runningSpeed;
     public float jumpForce;
     private Rigidbody rb;
     private bool isJumping;
@@ -25,8 +27,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
-        speed = 0.15f;
-        jumpForce = 7f;
+        walkingSpeed = 0.10f;
+        runningSpeed = 0.15f;
+        speed = walkingSpeed;
+        jumpForce = 3f;
         rb = GetComponent<Rigidbody>();
     }
 
@@ -79,12 +83,12 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            speed = 0.35f;
+            speed = runningSpeed;
             isRunning = true;
             playerAnimator.SetBool("IsRunning", true);
         } else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            speed = 0.15f;
+            speed = walkingSpeed;
             isRunning = false;
             playerAnimator.SetBool("IsRunning", false);
         }

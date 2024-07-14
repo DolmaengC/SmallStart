@@ -1420,6 +1420,14 @@ PrefabInstance:
       propertyPath: firePosition
       value: 
       objectReference: {fileID: 230807550}
+    - target: {fileID: 7117711123173691547, guid: b8fe287b00399514d95d1b0259907d84, type: 3}
+      propertyPath: m_Drag
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7117711123173691547, guid: b8fe287b00399514d95d1b0259907d84, type: 3}
+      propertyPath: m_Mass
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7857794927687110701, guid: b8fe287b00399514d95d1b0259907d84, type: 3}
       propertyPath: m_Name
       value: Player
