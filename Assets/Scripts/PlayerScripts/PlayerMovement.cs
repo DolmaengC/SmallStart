@@ -8,9 +8,12 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed;
+    public float walkingSpeed;
+    public float runningSpeed;
     public float jumpForce;
     private Rigidbody rb;
     private bool isJumping;
+    private bool isRunning;
     // public int itemCount;
     public float turnSpeed = 0.5f;
     private Vector3 targetDirection;
@@ -24,8 +27,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
-        speed = 0.15f;
-        jumpForce = 7f;
+        walkingSpeed = 0.10f;
+        runningSpeed = 0.15f;
+        speed = walkingSpeed;
+        jumpForce = 3f;
         rb = GetComponent<Rigidbody>();
     }
 
@@ -70,15 +75,26 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //float h = Input.GetAxis("Horizontal");
-        //float v = Input.GetAxis("Vertical");
-        //transform.Translate(new Vector3(h, j, v)*speed);
-
         if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
             isJumping = true;
             playerAnimator.SetTrigger("IsJumping");
             rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
+        }
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            speed = runningSpeed;
+            isRunning = true;
+            playerAnimator.SetBool("IsRunning", true);
+        } else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            speed = walkingSpeed;
+            isRunning = false;
+            playerAnimator.SetBool("IsRunning", false);
+        }
+        if (Input.GetMouseButton(0) ) 
+        {
+            playerAnimator.SetTrigger("IsPunching");
         }
     }
 
