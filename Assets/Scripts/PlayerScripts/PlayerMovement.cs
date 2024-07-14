@@ -92,7 +92,10 @@ public class PlayerMovement : MonoBehaviour
             isRunning = false;
             playerAnimator.SetBool("IsRunning", false);
         }
-
+        if (Input.GetMouseButton(0) ) 
+        {
+            playerAnimator.SetTrigger("IsPunching");
+        }
     }
 
     private void OnCollisionEnter(Collision other)
